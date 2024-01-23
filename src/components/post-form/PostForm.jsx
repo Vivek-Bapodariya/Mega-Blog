@@ -39,7 +39,7 @@ export default function PostForm({post}) {
             if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data,userId: userData.$id});
+                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id});
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
@@ -62,7 +62,7 @@ export default function PostForm({post}) {
 
     React.useEffect(() => {
         const subscription = watch((value, {name}) => {
-            if (name === 'title') {
+            if (name === "title") {
                 setValue('slug', slugTransform(value.title), {shouldValidate: true});
             }
         });
@@ -72,7 +72,7 @@ export default function PostForm({post}) {
     
 
   return (
-    <form onSubmit={handleSubmit(submit)} className=" flex flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
         <div className='w-2/3 px-2'>
             <Input
                 label="Title :"
@@ -97,7 +97,7 @@ export default function PostForm({post}) {
                 type="file"
                 className="mb-4"
                 accept="image/png, image/jpg, image/jpeg, image/gif"
-            {...register("image", {required: !post})}
+                {...register("image", {required: !post})}
             />
             {post &&(
                 <div className='w-full mb-4'>
@@ -115,7 +115,7 @@ export default function PostForm({post}) {
                  {...register("status", {required: true})}
             />
             <Button type='submit' bgColor={post ? "bg-green-500" : undefined} className='w-full'>
-                {post? "Update" : "Submit"}
+                {post ? "Update" : "Submit"}
             </Button>
         </div>
     </form>
